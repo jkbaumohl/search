@@ -1060,7 +1060,10 @@ if __name__ == "__main__":
             featureData = None 
             featureData = dict()
             featureData['Feature'] = list()
-            featureData['Feature'].append(currentLine['Feature'])
+
+            if process_all_genomes or (currentGid in genomes_dict.keys()):
+                featureData['Feature'].append(currentLine['Feature'])
+
             currentNumericGid = numericGid 
             currentGid = gid 
             processing_new_genome = True
