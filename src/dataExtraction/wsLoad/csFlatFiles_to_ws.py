@@ -266,7 +266,7 @@ def create_feature_objects(gid,genetic_code,featureData,contigSeqObjects):
 #    for alias_line in featureData['FeatureAlias']:
 #        alias_line=alias_line.rstrip()
 #        [fid,alias]=alias_line.split("\t")
-#        if not featureObjects[fid].has_key("aliases"):
+#        if not featureObjects[fid].has_key("aliases):
 #            featureObjects[fid]['aliases']=list()
 #        featureObjects[fid]['aliases'].append(alias)
 
@@ -277,7 +277,8 @@ def create_feature_objects(gid,genetic_code,featureData,contigSeqObjects):
             featureObjects[fid]['aliases']=dict()
         if not featureObjects[fid]["aliases"].has_key(source_db):
             featureObjects[fid]['aliases'][source_db]=list()
-        featureObjects[fid]['aliases'][source_db].append(alias)
+        if alias not in featureObjects[fid]['aliases'][source_db]:
+            featureObjects[fid]['aliases'][source_db].append(alias)
 
     featureLocations = dict()
 #    logger.debug("Number of rows in feature locations : " + str(len(featureData['Locations'])))
@@ -1061,11 +1062,12 @@ if __name__ == "__main__":
             featureData = dict()
             featureData['Feature'] = list()
 
+            currentGid = gid 
             if process_all_genomes or (currentGid in genomes_dict.keys()):
                 featureData['Feature'].append(currentLine['Feature'])
 
             currentNumericGid = numericGid 
-            currentGid = gid 
+
             processing_new_genome = True
             logger.info('Current Genome : ' + currentGid) 
 
